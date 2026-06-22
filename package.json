@@ -1,0 +1,21 @@
+{
+  "name": "points-mall-message",
+  "version": "0.1.0",
+  "description": "Points Mall Message Service (Express/TypeScript)",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsup src/index.ts --format cjs --out-dir dist",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.8.0"
+  }
+}

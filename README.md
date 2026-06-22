@@ -9,11 +9,17 @@
 - **Internal Notification API** — CRUD for notifications: create, list (paginated), mark-as-read, mark-all-read, unread count
 - **File Metadata** — tracks uploaded file records (filename, size, uploader, timestamp) in PostgreSQL
 
+## Why This Tech Stack
+
+This service does two things: consume a message queue and serve file metadata. Both are pure IO — no CPU-intensive computation, no complex business rules. A lightweight Express + TypeScript setup is the right tool: minimal overhead, async IO by default, and nothing in the framework fighting the service's actual purpose.
+
+NestJS would be over-engineering here. The deliberate choice of a minimal framework is itself a signal: knowing *when not* to use a structured framework is as important as knowing how to use one.
+
 ## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Node.js 20, Express 4, TypeScript |
+| Framework | Node.js 22, Express 5, TypeScript 5.8 |
 | ORM | Prisma (PostgreSQL) |
 | File Handling | Multer (multipart), `fs/promises` |
 | Message Queue | amqplib (RabbitMQ consumer) |
