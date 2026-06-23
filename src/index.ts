@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV ?? 'dev'}` });
 import express from 'express';
 
 const app = express();
