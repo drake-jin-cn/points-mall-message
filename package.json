@@ -6,7 +6,13 @@
     "dev": "ts-node src/index.ts",
     "build": "tsup src/index.ts --format cjs --out-dir dist",
     "start": "node dist/index.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "lint-staged": {
+    "*.{ts,js}": ["prettier --write"],
+    "*.{json,md}": ["prettier --write"]
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -15,6 +21,8 @@
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
+    "lint-staged": "^17.0.8",
+    "prettier": "^3.8.4",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
     "typescript": "^5.8.0"

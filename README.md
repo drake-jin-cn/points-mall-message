@@ -25,6 +25,13 @@ NestJS would be over-engineering here. The deliberate choice of a minimal framew
 | Message Queue | amqplib (RabbitMQ consumer) |
 | Auth | JWT middleware (validates BFF-issued tokens) |
 
+## Docker
+
+```bash
+docker build -t points-mall-message .
+docker run --env-file .env.dev -p 8082:8082 points-mall-message
+```
+
 ## Local Development
 
 ```bash
@@ -41,6 +48,16 @@ RABBITMQ_URL=amqp://localhost:5672
 UPLOAD_DIR=./uploads
 JWT_SECRET=your-secret
 ```
+
+## Code Quality
+
+```bash
+pnpm lint          # TypeScript type check (tsc --noEmit)
+pnpm format:check  # Prettier (check only)
+pnpm format        # Prettier (auto-fix)
+```
+
+Formatting runs automatically on staged files via the pre-commit hook. CI runs on every PR via `.github/workflows/ci.yml` in this repository.
 
 ## Design Note
 
