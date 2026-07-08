@@ -6,16 +6,16 @@ import { jwtAuth } from '../../middleware/jwtAuth';
 const TEST_SECRET = 'test-jwt-secret-change-me-please';
 
 function makeToken(payload: object = {}, secret = TEST_SECRET, expiresIn = '15m'): string {
-  return jwt.sign(
-    { sub: 1, email: 'admin@pointsmall.com', roles: ['admin'], ...payload },
-    secret,
-    { expiresIn },
-  );
+  return jwt.sign({ sub: 1, email: 'admin@pointsmall.com', roles: ['admin'], ...payload }, secret, {
+    expiresIn,
+  });
 }
 
-function mockReqResNext(
-  authHeader?: string,
-): { req: Partial<Request>; res: Partial<Response>; next: NextFunction } {
+function mockReqResNext(authHeader?: string): {
+  req: Partial<Request>;
+  res: Partial<Response>;
+  next: NextFunction;
+} {
   const req: Partial<Request> = {
     headers: authHeader ? { authorization: authHeader } : {},
   };
