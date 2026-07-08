@@ -1,11 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { type SignOptions } from 'jsonwebtoken';
 import { jwtAuth } from '../../middleware/jwtAuth';
 
 const TEST_SECRET = 'test-jwt-secret-change-me-please';
 
-function makeToken(payload: object = {}, secret = TEST_SECRET, expiresIn = '15m'): string {
+function makeToken(
+  payload: object = {},
+  secret = TEST_SECRET,
+  expiresIn: SignOptions['expiresIn'] = '15m',
+): string {
   return jwt.sign({ sub: 1, email: 'admin@pointsmall.com', roles: ['admin'], ...payload }, secret, {
     expiresIn,
   });
